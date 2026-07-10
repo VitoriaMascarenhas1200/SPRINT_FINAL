@@ -1,0 +1,69 @@
+<div class="login-page">
+
+  <header class="navbar-mp">
+    <a routerLink="/" class="brand">
+      <span class="brand-icon">🐾</span> MatchPet
+    </a>
+  </header>
+
+  <div class="login-container">
+    <div class="login-left">
+      <h1 class="frase-impacto">Um match pode mudar duas vidas.</h1>
+      <img src="https://placedog.net/1000/1300?id=9" alt="Pet esperando adoção" class="pet-image" />
+      <div class="login-left-overlay">
+      </div>
+    </div>
+
+    <div class="login-right">
+      <div class="login-card">
+
+        <h4 class="text-center boas-vindas mb-4">Entrar na sua conta</h4>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+          <div class="mb-3 input-group">
+            <i class="bi bi-envelope"></i>
+            <input
+              type="email"
+              class="form-control"
+              placeholder="Seu e-mail"
+              formControlName="email"
+            />
+          </div>
+
+          <div class="mb-3 input-group">
+            <i class="bi bi-lock"></i>
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              class="form-control"
+              placeholder="Sua senha"
+              formControlName="senha"
+            />
+            <span class="input-group-text info-icon" (click)="togglePassword()">
+              <span *ngIf="!showPassword">👁</span>
+              <span *ngIf="showPassword">🚫</span>
+            </span>
+          </div>
+
+          <div *ngIf="errorMsg" class="alert alert-danger mb-3">
+            {{ errorMsg }}
+          </div>
+
+          <div class="mb-3">
+            <button type="submit" class="btn btn-mp" [disabled]="loginForm.invalid">
+              Entrar
+            </button>
+          </div>
+
+          <p class="text-center cadastro-link">
+            Ainda não tem conta? <a routerLink="/cadastro">Cadastre-se</a>
+          </p>
+          <p class="text-center">
+            <a routerLink="/" class="voltar-link">← Voltar para a home</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>

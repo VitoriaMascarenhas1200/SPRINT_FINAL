@@ -1,0 +1,261 @@
+:root {
+  --seagreen: #2E8B57;
+  --seagreen-dark: #23703F;
+  --seagreen-light: #E7F5EE;
+  --text-dark: #2B3B34;
+  --text-muted: #5C6B65;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.login-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ---------- HEADER (same style as home, logo only) ---------- */
+
+.navbar-mp {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e3ede8;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  padding: 0.75rem 1.5rem;
+}
+
+.brand {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #2E8B57;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.brand-icon {
+  margin-right: 6px;
+}
+
+/* ---------- LAYOUT ---------- */
+
+.login-container {
+  display: flex;
+  flex: 1;
+  background-color: #FBFDFC;
+}
+
+/* ---------- LEFT: IMAGE WITH IMPACTFUL PHRASE ---------- */
+
+.login-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-width: 400px;
+  overflow: hidden;
+  display: none;
+}
+
+.pet-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.login-left-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15, 40, 30, 0.35), rgba(15, 40, 30, 0.7));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 2.5rem;
+}
+
+.frase-impacto {
+  color: white;
+  left: 5%;
+  font-weight: 800;
+  font-size: 2.4rem;
+  line-height: 1.25;
+  position: absolute;
+
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+
+/* ---------- RIGHT: LOGIN FORM (centered) ---------- */
+
+.login-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.login-card {
+  background: white;
+  padding: 2.5rem 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 420px;
+}
+
+.boas-vindas {
+  color: #2E8B57;
+  font-weight: 700;
+  margin: 0 0 1.5rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mb-3 {
+  margin-bottom: 1rem;
+}
+
+/* ---------- FORM FIELDS ---------- */
+
+.input-group {
+  display: flex;
+  align-items: center;
+  padding-left: 0.5rem; /* Adiciona um espaço entre a borda esquerda e o ícone */
+  padding-right: 0.5rem;
+  border: 1px solid #d7e3dd;
+  border-radius: 10px;
+  overflow: hidden;
+  background: white;
+  transition: border-color 0.2s;
+}
+
+.input-group:focus-within {
+  border-color: #2E8B57;
+}
+
+.input-group-text {
+  padding: 0 0.75rem;
+  font-size: 1rem;
+  color: #2E8B57;
+  display: flex;
+  align-items: center;
+}
+
+.bi-envelope{
+  color: #23703F;
+  margin-left: 0.5rem;  /* Uma segurança extra para desgrudar da esquerda */
+  margin-right: 0.75rem;
+  
+}
+
+.bi-lock{
+  color: #23703F;
+  margin-left: 0.5rem;
+  margin-right: 0.75rem;
+  
+}
+
+.info-icon {
+  cursor: pointer;
+}
+
+.form-control {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 0.65rem 0.5rem 0.65rem 0;
+  font-size: 0.95rem;
+  background: transparent;
+}
+
+/* ---------- BUTTON ---------- */
+
+.btn {
+  display: block;
+  width: 100%;
+  border: none;
+  border-radius: 24px;
+  padding: 0.7rem;
+  font-weight: 600;
+  font-size: 0.98rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-mp {
+  background-color: #2E8B57;
+  color: white;
+}
+
+.btn-mp:hover {
+  background-color: #23703F;
+}
+
+.btn-mp:disabled {
+  background-color: #a9d3bd;
+  cursor: not-allowed;
+}
+
+/* ---------- ALERT ---------- */
+
+.alert-danger {
+  background-color: #fdecea;
+  color: #b3261e;
+  border: 1px solid #f5c6c3;
+  border-radius: 8px;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.9rem;
+}
+
+/* ---------- LINKS ---------- */
+
+.cadastro-link,
+.cadastro-link a,
+.voltar-link {
+  font-size: 0.9rem;
+}
+
+.cadastro-link a,
+.voltar-link {
+  color: #2E8B57;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.cadastro-link a:hover,
+.voltar-link:hover {
+  text-decoration: underline;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (min-width: 900px) {
+  .login-left {
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-mp {
+    padding: 0.65rem 1rem;
+  }
+
+  .login-card {
+    padding: 2rem 1.5rem;
+    box-shadow: none;
+  }
+
+  .login-right {
+    padding: 1.5rem 1rem;
+  }
+}

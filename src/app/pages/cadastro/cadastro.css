@@ -1,0 +1,82 @@
+.cadastro-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFF8F3;
+  padding: 2rem 1rem;
+}
+
+.cadastro-card {
+  background: white;
+  padding: 2.5rem 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 460px;
+}
+
+.brand-link {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #FF6B5B;
+  text-decoration: none;
+}
+
+.brand-icon {
+  margin-right: 4px;
+}
+
+.titulo {
+  color: #333;
+  font-weight: 700;
+}
+
+.form-label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.form-control:focus {
+  border-color: #FF6B5B !important;
+  box-shadow: none !important;
+}
+
+.form-check-input:checked {
+  background-color: #FF6B5B !important;
+  border-color: #FF6B5B !important;
+}
+
+.form-check-label a {
+  color: #2A9D8F;
+  font-weight: 600;
+}
+
+.btn-mp {
+  background-color: #FF6B5B;
+  color: white;
+  font-weight: 600;
+  padding: 10px;
+  border: none;
+  border-radius: 24px;
+}
+
+.btn-mp:hover {
+  background-color: #e85a4b;
+  color: white;
+}
+
+.btn-mp:disabled {
+  background-color: #f5b8b0;
+}
+
+.login-link a {
+  color: #FF6B5B;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}

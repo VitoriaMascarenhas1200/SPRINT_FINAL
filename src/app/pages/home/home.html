@@ -1,0 +1,142 @@
+<div class="home-wrapper">
+
+  <header class="navbar-mp">
+    <a routerLink="/" class="brand">
+      <span class="brand-icon">🐾</span> MatchPet
+    </a>
+
+    <div *ngIf="!usuario" class="auth-buttons">
+      <a routerLink="/login" class="btn btn-outline-mp">Entrar</a>
+      <a routerLink="/cadastro" class="btn btn-mp">Cadastre-se</a>
+    </div>
+
+    <div *ngIf="usuario" class="user-menu">
+      <button class="user-btn" (click)="userMenuAberto = !userMenuAberto">
+        👤 <span class="user-name">{{ usuario.nome }}</span>
+      </button>
+      <div class="user-dropdown" [class.open]="userMenuAberto">
+        <a routerLink="/match" (click)="userMenuAberto=false">Buscar Match</a>
+        <a (click)="logout()" class="dropdown-link">Sair</a>
+      </div>
+    </div>
+  </header>
+
+<section class="hero-carousel">
+
+  <input type="radio" name="hero-slide" id="hero-slide-1" class="carousel-radio" [checked]="slideAtivo === 1">
+  <input type="radio" name="hero-slide" id="hero-slide-2" class="carousel-radio" [checked]="slideAtivo === 2">
+  <input type="radio" name="hero-slide" id="hero-slide-3" class="carousel-radio" [checked]="slideAtivo === 3">
+
+  <div class="carousel-track">
+    <div class="carousel-slide slide-1" style="background-image:url('https://placedog.net/1200/700?id=8')"></div>
+    <div class="carousel-slide slide-2" style="background-image:url('https://placedog.net/1200/700?id=2')"></div>
+    <div class="carousel-slide slide-3" style="background-image:url('https://placekitten.com/1200/700?image=3')"></div>
+  </div>
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <h1>Encontre seu novo melhor amigo!</h1>
+    <p>Conectamos ONGs de proteção animal a pessoas prontas para dar um novo lar a pets resgatados.</p>
+    <button class="btn btn-mp btn-lg" (click)="darMatch()">Dar Match 🐾</button>
+    <!--<p *ngIf="!usuario" class="hero-hint">É necessário ter uma conta para dar match.</p>-->
+  </div>
+
+  <div class="carousel-arrows arrows-for-1">
+    <label (click)="mudarSlideManualmente(3)" class="arrow arrow-left" aria-label="Slide anterior">&#10094;</label>
+    <label (click)="mudarSlideManualmente(2)" class="arrow arrow-right" aria-label="Próximo slide">&#10095;</label>
+  </div>
+  <div class="carousel-arrows arrows-for-2">
+    <label (click)="mudarSlideManualmente(1)" class="arrow arrow-left" aria-label="Slide anterior">&#10094;</label>
+    <label (click)="mudarSlideManualmente(3)" class="arrow arrow-right" aria-label="Próximo slide">&#10095;</label>
+  </div>
+  <div class="carousel-arrows arrows-for-3">
+    <label (click)="mudarSlideManualmente(2)" class="arrow arrow-left" aria-label="Slide anterior">&#10094;</label>
+    <label (click)="mudarSlideManualmente(1)" class="arrow arrow-right" aria-label="Próximo slide">&#10095;</label>
+  </div>
+
+  <div class="carousel-dots">
+    <label (click)="mudarSlideManualmente(1)" class="dot" aria-label="Slide 1"></label>
+    <label (click)="mudarSlideManualmente(2)" class="dot" aria-label="Slide 2"></label>
+    <label (click)="mudarSlideManualmente(3)" class="dot" aria-label="Slide 3"></label>
+  </div>
+
+</section>
+
+  <section class="pets-section" *ngIf="petsRecentes.length">
+    <h2 class="section-title">Resgatados recentemente</h2>
+
+    <div class="pets-grid">
+      <article class="pet-card" *ngFor="let pet of petsRecentes">
+        <img [src]="pet.foto" [alt]="pet.nome" class="pet-card-img" />
+        <div class="pet-card-body">
+          <h3>{{ pet.nome }}</h3>
+          <p class="pet-card-meta">
+            {{ pet.raca }} · {{ pet.idadeAnos === 0 ? 'Filhote' : pet.idadeAnos + ' anos' }}
+          </p>
+          <p class="pet-card-location">{{ pet.cidade }}/{{ pet.estado }}</p>
+          <span class="badge-ong">{{ pet.ong }}</span>
+          <button class="btn btn-mp pet-card-match-btn" (click)="darMatchPet(pet)">
+            Dar Match 🐾
+          </button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+</div>
+
+<!-- Overlay: detalhes do pet (só é aberto se o usuário estiver logado) -->
+<div class="modal-overlay" *ngIf="mostrarModalDetalhe" (click)="fecharModalDetalhe()">
+  <div class="modal-box modal-box-lg" *ngIf="petSelecionado as pet" (click)="$event.stopPropagation()">
+    <div class="modal-box-header">
+      <h5 class="modal-box-title">{{ pet.nome }}</h5>
+      <button type="button" class="modal-close-btn" (click)="fecharModalDetalhe()" aria-label="Fechar">&times;</button>
+    </div>
+    <div class="modal-box-body">
+      <div class="detalhe-grid">
+        <img [src]="pet.foto" [alt]="pet.nome" class="detalhe-img" />
+        <div class="detalhe-info">
+          <p><strong>Raça:</strong> {{ pet.raca }}</p>
+          <p><strong>Idade:</strong> {{ pet.idadeAnos === 0 ? 'Filhote (menos de 1 ano)' : pet.idadeAnos + ' anos' }}</p>
+          <p><strong>Porte:</strong> {{ pet.porte | titlecase }}</p>
+          <p><strong>Sexo:</strong> {{ pet.sexo === 'macho' ? 'Macho' : 'Fêmea' }}</p>
+          <p><strong>Localização:</strong> {{ pet.cidade }}/{{ pet.estado }}</p>
+          <p><strong>ONG responsável:</strong> {{ pet.ong }}</p>
+          <p>
+            <span class="badge-info" [class.badge-ok]="pet.vacinado">{{ pet.vacinado ? 'Vacinado' : 'Vacinação pendente' }}</span>
+            <span class="badge-info" [class.badge-ok]="pet.castrado">{{ pet.castrado ? 'Castrado' : 'Castração pendente' }}</span>
+          </p>
+          <p class="mb-2"><strong>Temperamento:</strong></p>
+          <div class="mb-3">
+            <span class="badge-temperamento" *ngFor="let t of pet.temperamento">{{ t }}</span>
+          </div>
+          <p>{{ pet.descricao }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-box-footer">
+      <a routerLink="/match" class="btn btn-mp" (click)="fecharModalDetalhe()">Ir para busca de Match</a>
+      <button type="button" class="btn btn-outline-mp" (click)="fecharModalDetalhe()">Fechar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Overlay: aviso de login necessário -->
+<div class="modal-overlay" *ngIf="mostrarModalLoginNecessario" (click)="fecharModalLoginNecessario()">
+  <div class="modal-box modal-box-sm login-necessario-content" (click)="$event.stopPropagation()">
+    <div class="modal-box-header">
+      <h5 class="modal-box-title">🐾 Ops, quase lá!</h5>
+      <button type="button" class="modal-close-btn" (click)="fecharModalLoginNecessario()" aria-label="Fechar">&times;</button>
+    </div>
+    <div class="modal-box-body text-center">
+      <p>Para dar match e ver os detalhes deste pet, você precisa ter uma conta.</p>
+      <p class="text-muted">Crie uma conta gratuita ou entre com a que você já tem para continuar.</p>
+    </div>
+    <div class="modal-box-footer justify-center">
+      <button type="button" class="btn btn-mp" (click)="irParaLogin()">
+        Entrar ou Cadastre-se
+      </button>
+    </div>
+  </div>
+</div>

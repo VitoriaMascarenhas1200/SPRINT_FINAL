@@ -1,0 +1,149 @@
+<div class="match-wrapper">
+
+  <nav class="navbar-mp">
+    <div class="d-flex align-items-center justify-content-between w-100 px-3 py-2">
+      <a routerLink="/" class="brand">
+        <span class="brand-icon">🐾</span> MatchPet
+      </a>
+      <div class="user-menu">
+        <button class="user-btn" (click)="userMenuAberto = !userMenuAberto">
+          👤 <span class="d-none d-sm-inline">{{ usuario?.nome }}</span>
+        </button>
+        <div class="user-dropdown" [class.open]="userMenuAberto">
+          <a routerLink="/" (click)="userMenuAberto=false">Home</a>
+          <a (click)="logout()" style="cursor:pointer">Sair</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="match-content container-fluid px-3 py-4">
+
+    <h2 class="match-title">Encontre seu match</h2>
+    <p class="match-subtitle">Conte suas preferências e veja quais pets combinam com você.</p>
+
+    <form [formGroup]="filtroForm" (ngSubmit)="buscarPets()" class="filtro-card">
+      <div class="row g-3">
+        <div class="col-6 col-md-3">
+          <label class="form-label">Espécie</label>
+          <select class="form-select" formControlName="especie">
+            <option value="">Qualquer</option>
+            <option value="cachorro">Cachorro</option>
+            <option value="gato">Gato</option>
+          </select>
+        </div>
+        <div class="col-6 col-md-3">
+          <label class="form-label">Porte</label>
+          <select class="form-select" formControlName="porte">
+            <option value="">Qualquer</option>
+            <option value="pequeno">Pequeno</option>
+            <option value="medio">Médio</option>
+            <option value="grande">Grande</option>
+          </select>
+        </div>
+        <div class="col-6 col-md-3">
+          <label class="form-label">Faixa etária</label>
+          <select class="form-select" formControlName="faixaEtaria">
+            <option value="">Qualquer</option>
+            <option value="filhote">Filhote</option>
+            <option value="adulto">Adulto</option>
+            <option value="idoso">Idoso</option>
+          </select>
+        </div>
+        <div class="col-6 col-md-3">
+          <label class="form-label">Sexo</label>
+          <select class="form-select" formControlName="sexo">
+            <option value="">Qualquer</option>
+            <option value="macho">Macho</option>
+            <option value="femea">Fêmea</option>
+          </select>
+        </div>
+      </div>
+      <div class="d-grid mt-3">
+        <button type="submit" class="btn btn-mp">Buscar matches 🐾</button>
+      </div>
+    </form>
+
+    <div *ngIf="carregando" class="text-center text-muted my-4">Procurando pets para você...</div>
+
+    <div *ngIf="buscou && !carregando" class="resultados-section">
+      <p class="resultados-count" *ngIf="resultados.length">
+        {{ resultados.length }} pet(s) encontrado(s) com o seu perfil de busca.
+      </p>
+
+      <div *ngIf="!resultados.length" class="alert alert-warning text-center">
+        Nenhum pet encontrado com esses filtros. Tente ampliar sua busca.
+      </div>
+
+      <div class="row g-3">
+        <div class="col-12 col-sm-6 col-lg-4 col-xl-3" *ngFor="let pet of resultados">
+          <div class="pet-card">
+            <img [src]="pet.foto" [alt]="pet.nome" class="pet-card-img" />
+            <div class="pet-card-body">
+              <h5>{{ pet.nome }}</h5>
+              <p class="pet-card-info">{{ pet.raca }} · {{ pet.porte | titlecase }}</p>
+              <p class="pet-card-ong">{{ pet.ong }}</p>
+              <span *ngIf="jaTemMatch(pet)" class="badge-match">Match confirmado ✓</span>
+              <button class="btn btn-outline-mp w-100 mt-2" (click)="verDetalhes(pet)">
+                {{ jaTemMatch(pet) ? 'Ver detalhes' : 'Dar Match' }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal de Detalhes do Pet -->
+<div class="modal fade" id="modalDetalhePet" tabindex="-1" aria-labelledby="modalDetalhePetLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content" *ngIf="petSelecionado as pet">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalDetalhePetLabel">{{ pet.nome }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-4">
+          <div class="col-12 col-md-5">
+            <img [src]="pet.foto" [alt]="pet.nome" class="detalhe-img" />
+          </div>
+          <div class="col-12 col-md-7">
+            <p><strong>Raça:</strong> {{ pet.raca }}</p>
+            <p><strong>Idade:</strong> {{ pet.idadeAnos === 0 ? 'Filhote (menos de 1 ano)' : pet.idadeAnos + ' anos' }}</p>
+            <p><strong>Porte:</strong> {{ pet.porte | titlecase }}</p>
+            <p><strong>Sexo:</strong> {{ pet.sexo === 'macho' ? 'Macho' : 'Fêmea' }}</p>
+            <p><strong>Localização:</strong> {{ pet.cidade }}/{{ pet.estado }}</p>
+            <p><strong>ONG responsável:</strong> {{ pet.ong }}</p>
+            <p>
+              <span class="badge-info" [class.badge-ok]="pet.vacinado">{{ pet.vacinado ? 'Vacinado' : 'Vacinação pendente' }}</span>
+              <span class="badge-info" [class.badge-ok]="pet.castrado">{{ pet.castrado ? 'Castrado' : 'Castração pendente' }}</span>
+            </p>
+            <p class="mb-2"><strong>Temperamento:</strong></p>
+            <div class="mb-3">
+              <span class="badge-temperamento" *ngFor="let t of pet.temperamento">{{ t }}</span>
+            </div>
+            <p>{{ pet.descricao }}</p>
+          </div>
+        </div>
+
+        <div *ngIf="jaTemMatch(pet)" class="match-sucesso mt-3">
+          🎉 Vocês deram match! Entre em contato com a <strong>{{ pet.ong }}</strong> em
+          <strong>contato&#64;{{ pet.ong | lowercase | slice:0:3 }}.org.br</strong> para dar continuidade ao processo de adoção.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          *ngIf="!jaTemMatch(pet)"
+          type="button"
+          class="btn btn-mp"
+          (click)="confirmarMatch(pet)"
+        >
+          Confirmar Match 🐾
+        </button>
+        <button type="button" class="btn btn-outline-mp" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
