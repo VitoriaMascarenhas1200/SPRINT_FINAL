@@ -29,6 +29,9 @@ export class CadastroComponent implements OnInit {
   errorMsg = '';
   showPassword = false;
 
+  mostrarTermos = false;
+  mostrarLGPD = false;
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -50,6 +53,22 @@ export class CadastroComponent implements OnInit {
     this.showPassword = !this.showPassword;
   }
 
+     abrirTermos(): void {
+    this.mostrarTermos = true;
+  }
+
+  fecharTermos(): void {
+    this.mostrarTermos = false;
+  }
+
+  abrirLGPD(): void {
+    this.mostrarLGPD = true;
+  }
+
+  fecharLGPD(): void {
+    this.mostrarLGPD = false;
+  }
+  
   onSubmit(): void {
     if (this.cadastroForm.invalid) {
       this.errorMsg = this.cadastroForm.errors?.['senhasDiferentes']

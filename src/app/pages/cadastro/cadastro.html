@@ -1,39 +1,45 @@
 <div class="cadastro-container">
   <div class="cadastro-card">
 
-    <div class="text-center mb-3">
+    <div class="cadastro-header">
       <a routerLink="/" class="brand-link"><span class="brand-icon">🐾</span> MatchPet</a>
     </div>
 
-    <h4 class="text-center titulo mb-4">Criar minha conta</h4>
+    <h4 class="titulo">Criar minha conta</h4>
 
     <form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
 
-      <div class="mb-3">
-        <label class="form-label">Nome completo</label>
-        <input type="text" class="form-control" placeholder="Seu nome" formControlName="nome" />
+      <div class="campo">
+        <label class="form-label" for="nome">Nome completo</label>
+        <input id="nome" type="text" class="form-control" placeholder="Seu nome" formControlName="nome" />
       </div>
 
-      <div class="mb-3">
-        <label class="form-label">E-mail</label>
-        <input type="email" class="form-control" placeholder="seuemail@exemplo.com" formControlName="email" />
+      <div class="campo">
+        <label class="form-label" for="email">E-mail</label>
+        <input id="email" type="email" class="form-control" placeholder="seuemail@exemplo.com" formControlName="email" />
       </div>
 
-      <div class="mb-3 input-group">
+      <div class="campo">
+        <label class="form-label" for="senha">Senha</label>
+        <div class="input-group">
+          <input
+            id="senha"
+            [type]="showPassword ? 'text' : 'password'"
+            class="form-control"
+            placeholder="Crie uma senha (mín. 6 caracteres)"
+            formControlName="senha"
+          />
+          <span class="input-group-text" (click)="togglePassword()">
+            <i *ngIf="!showPassword" class="bi bi-eye-slash"></i>
+            <i *ngIf="showPassword" class="bi bi-eye"></i>
+          </span>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label class="form-label" for="confirmarSenha">Confirmar senha</label>
         <input
-          [type]="showPassword ? 'text' : 'password'"
-          class="form-control"
-          placeholder="Crie uma senha (mín. 6 caracteres)"
-          formControlName="senha"
-        />
-        <span class="input-group-text bg-white" style="cursor:pointer" (click)="togglePassword()">
-          <span *ngIf="!showPassword">👁</span>
-          <span *ngIf="showPassword">🚫</span>
-        </span>
-      </div>
-
-      <div class="mb-3">
-        <input
+          id="confirmarSenha"
           [type]="showPassword ? 'text' : 'password'"
           class="form-control"
           placeholder="Confirme sua senha"
@@ -41,77 +47,71 @@
         />
       </div>
 
-      <div class="form-check mb-2">
+      <div class="form-check">
         <input class="form-check-input" type="checkbox" id="aceitouTermos" formControlName="aceitouTermos" />
         <label class="form-check-label" for="aceitouTermos">
           Li e aceito os
-          <a href="#" data-bs-toggle="modal" data-bs-target="#modalTermos">Termos de Uso</a>
+          <a href="#" (click)="$event.preventDefault(); abrirTermos()">Termos de Uso</a>
         </label>
       </div>
 
-      <div class="form-check mb-3">
+      <div class="form-check">
         <input class="form-check-input" type="checkbox" id="aceitouLGPD" formControlName="aceitouLGPD" />
         <label class="form-check-label" for="aceitouLGPD">
           Autorizo o tratamento dos meus dados pessoais conforme a
-          <a href="#" data-bs-toggle="modal" data-bs-target="#modalLGPD">Política de Privacidade (LGPD)</a>
+          <a href="#" (click)="$event.preventDefault(); abrirLGPD()">Política de Privacidade (LGPD)</a>
         </label>
       </div>
 
-      <div *ngIf="errorMsg" class="alert alert-danger py-2 mb-3">
+      <div *ngIf="errorMsg" class="alert-danger">
         {{ errorMsg }}
       </div>
 
-      <div class="d-grid mb-3">
-        <button type="submit" class="btn btn-mp" [disabled]="cadastroForm.invalid">
-          Criar conta
-        </button>
-      </div>
+      <button type="submit" class="btn btn-mp" [disabled]="cadastroForm.invalid">
+        Criar conta
+      </button>
 
-      <p class="text-center login-link">
+      <p class="login-link">
         Já tem conta? <a routerLink="/login">Entrar</a>
       </p>
     </form>
   </div>
 </div>
 
-<!-- Modal Termos de Uso -->
-<div class="modal fade" id="modalTermos" tabindex="-1" aria-labelledby="modalTermosLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalTermosLabel">Termos de Uso do MatchPet</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-      </div>
-      <div class="modal-body">
-        <p>Ao utilizar o MatchPet, você concorda que a plataforma atua como uma vitrine de conexão entre ONGs de proteção animal e possíveis adotantes, não sendo responsável pela guarda, saúde ou histórico dos animais anunciados, que é de responsabilidade de cada ONG cadastrada.</p>
-        <p>O usuário se compromete a fornecer informações verdadeiras no cadastro e a utilizar a função de "match" com a intenção genuína de avaliar uma adoção responsável.</p>
-        <p>É proibido utilizar a plataforma para fins comerciais, revenda de animais ou qualquer prática que viole a legislação de proteção animal vigente.</p>
-        <p>O MatchPet reserva-se o direito de suspender contas que descumpram estes termos ou que apresentem comportamento abusivo em relação às ONGs parceiras.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-mp" data-bs-dismiss="modal">Entendi</button>
-      </div>
+<!-- Pop-up: Termos de Uso -->
+<div class="modal-overlay" *ngIf="mostrarTermos" (click)="fecharTermos()">
+  <div class="modal-box" (click)="$event.stopPropagation()">
+    <div class="modal-box-header">
+      <h5 class="modal-box-title">Termos de Uso do MatchPet</h5>
+      <button type="button" class="modal-close-btn" (click)="fecharTermos()" aria-label="Fechar">&times;</button>
+    </div>
+    <div class="modal-box-body">
+      <p>Ao utilizar o MatchPet, você concorda que a plataforma atua como uma vitrine de conexão entre ONGs de proteção animal e possíveis adotantes, não sendo responsável pela guarda, saúde ou histórico dos animais anunciados, que é de responsabilidade de cada ONG cadastrada.</p>
+      <p>O usuário se compromete a fornecer informações verdadeiras no cadastro e a utilizar a função de "match" com a intenção genuína de avaliar uma adoção responsável.</p>
+      <p>É proibido utilizar a plataforma para fins comerciais, revenda de animais ou qualquer prática que viole a legislação de proteção animal vigente.</p>
+      <p>O MatchPet reserva-se o direito de suspender contas que descumpram estes termos ou que apresentem comportamento abusivo em relação às ONGs parceiras.</p>
+    </div>
+    <div class="modal-box-footer">
+      <button type="button" class="btn btn-mp" (click)="fecharTermos()">Entendi</button>
     </div>
   </div>
 </div>
 
-<!-- Modal LGPD / Política de Privacidade -->
-<div class="modal fade" id="modalLGPD" tabindex="-1" aria-labelledby="modalLGPDLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalLGPDLabel">Política de Privacidade (LGPD)</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-      </div>
-      <div class="modal-body">
-        <p>Em conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018), o MatchPet coleta apenas os dados necessários para viabilizar o processo de match e contato com as ONGs: nome, e-mail e senha de acesso.</p>
-        <p>Seus dados não são vendidos ou compartilhados com terceiros para fins de publicidade. O acesso é restrito às ONGs envolvidas em um match confirmado, exclusivamente para viabilizar a adoção.</p>
-        <p>Você pode solicitar a qualquer momento a correção, portabilidade ou exclusão dos seus dados, entrando em contato pelos canais oficiais da plataforma.</p>
-        <p>Os dados são armazenados de forma segura e utilizados apenas durante o período em que sua conta estiver ativa.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-mp" data-bs-dismiss="modal">Entendi</button>
-      </div>
+<!-- Pop-up: Política de Privacidade (LGPD) -->
+<div class="modal-overlay" *ngIf="mostrarLGPD" (click)="fecharLGPD()">
+  <div class="modal-box" (click)="$event.stopPropagation()">
+    <div class="modal-box-header">
+      <h5 class="modal-box-title">Política de Privacidade (LGPD)</h5>
+      <button type="button" class="modal-close-btn" (click)="fecharLGPD()" aria-label="Fechar">&times;</button>
+    </div>
+    <div class="modal-box-body">
+      <p>Em conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018), o MatchPet coleta apenas os dados necessários para viabilizar o processo de match e contato com as ONGs: nome, e-mail e senha de acesso.</p>
+      <p>Seus dados não são vendidos ou compartilhados com terceiros para fins de publicidade. O acesso é restrito às ONGs envolvidas em um match confirmado, exclusivamente para viabilizar a adoção.</p>
+      <p>Você pode solicitar a qualquer momento a correção, portabilidade ou exclusão dos seus dados, entrando em contato pelos canais oficiais da plataforma.</p>
+      <p>Os dados são armazenados de forma segura e utilizados apenas durante o período em que sua conta estiver ativa.</p>
+    </div>
+    <div class="modal-box-footer">
+      <button type="button" class="btn btn-mp" (click)="fecharLGPD()">Entendi</button>
     </div>
   </div>
 </div>

@@ -40,8 +40,8 @@
               formControlName="senha"
             />
             <span class="input-group-text info-icon" (click)="togglePassword()">
-              <span *ngIf="!showPassword">👁</span>
-              <span *ngIf="showPassword">🚫</span>
+              <i *ngIf="!showPassword" class="bi bi-eye-slash"></i>
+              <i *ngIf="showPassword" class="bi bi-eye"></i>
             </span>
           </div>
 
