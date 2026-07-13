@@ -73,7 +73,7 @@
   display: block;
   font-weight: 600;
   font-size: 0.85rem;
-  color: #5C6B65;
+  color: var(--text-muted);
   margin-bottom: 0.35rem;
 }
 

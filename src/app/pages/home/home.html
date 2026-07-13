@@ -1,22 +1,28 @@
 <div class="home-wrapper">
 
-  <header class="navbar-mp">
+<header class="navbar-mp">
     <a routerLink="/" class="brand">
       <span class="brand-icon">🐾</span> MatchPet
     </a>
 
-    <div *ngIf="!usuario" class="auth-buttons">
-      <a routerLink="/login" class="btn btn-outline-mp">Entrar</a>
-      <a routerLink="/cadastro" class="btn btn-mp">Cadastre-se</a>
-    </div>
-
-    <div *ngIf="usuario" class="user-menu">
-      <button class="user-btn" (click)="userMenuAberto = !userMenuAberto">
-        👤 <span class="user-name">{{ usuario.nome }}</span>
+    <div class="nav-actions">
+      <button type="button" class="btn-match-header" (click)="darMatch()">
+        Dar Match 🐾
       </button>
-      <div class="user-dropdown" [class.open]="userMenuAberto">
-        <a routerLink="/match" (click)="userMenuAberto=false">Buscar Match</a>
-        <a (click)="logout()" class="dropdown-link">Sair</a>
+
+      <div *ngIf="!usuario" class="auth-buttons">
+        <a routerLink="/login" class="btn btn-outline-mp">Entrar</a>
+        <a routerLink="/cadastro" class="btn btn-mp">Cadastre-se</a>
+      </div>
+
+      <div *ngIf="usuario" class="user-menu">
+        <button class="user-btn" (click)="userMenuAberto = !userMenuAberto">
+          👤 <span class="user-name">{{ usuario.nome }}</span>
+        </button>
+        <div class="user-dropdown" [class.open]="userMenuAberto">
+          <a routerLink="/match" (click)="userMenuAberto=false">Buscar Match</a>
+          <a (click)="logout()" class="dropdown-link">Sair</a>
+        </div>
       </div>
     </div>
   </header>

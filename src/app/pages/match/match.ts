@@ -1,21 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common'; // Para *ngIf, *ngFor e os pipes (titlecase, lowercase, slice)
-import { ReactiveFormsModule } from '@angular/forms'; // Para [formGroup] e formControlName
-import { RouterModule } from '@angular/router'; // Para routerLink da navbar
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth';
 import { PetService } from '../../services/pets';
 import { Pet, PetFiltro } from '../../../../models/pet.model';
 import { User } from '../../../../models/user.model';
 
-declare const bootstrap: any;
-
 @Component({
   selector: 'app-match',
   templateUrl: './match.html',
   styleUrls: ['./match.css'],
-  standalone: true, // Certifique-se de que está true se for componente autônomo
+  standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -32,6 +30,7 @@ export class MatchComponent implements OnInit {
   carregando = false;
 
   petSelecionado: Pet | null = null;
+  mostrarModalDetalhe = false;
   matchesConfirmados = new Set<number>();
 
   userMenuAberto = false;
@@ -52,6 +51,10 @@ export class MatchComponent implements OnInit {
       faixaEtaria: [''],
       sexo: ['']
     });
+
+    // Já mostra pets assim que a página abre (após login/cadastro),
+    // sem exigir que o usuário faça uma busca primeiro.
+    this.buscarPets();
   }
 
   buscarPets(): void {
@@ -67,11 +70,12 @@ export class MatchComponent implements OnInit {
 
   verDetalhes(pet: Pet): void {
     this.petSelecionado = pet;
-    const modalEl = document.getElementById('modalDetalhePet');
-    if (modalEl) {
-      const modal = new bootstrap.Modal(modalEl);
-      modal.show();
-    }
+    this.mostrarModalDetalhe = true;
+  }
+
+  fecharModalDetalhe(): void {
+    this.mostrarModalDetalhe = false;
+    this.petSelecionado = null;
   }
 
   confirmarMatch(pet: Pet): void {
@@ -84,6 +88,7 @@ export class MatchComponent implements OnInit {
 
   logout(): void {
     this.authService.logout();
+    this.userMenuAberto = false;
     this.router.navigate(['/']);
   }
 }

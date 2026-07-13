@@ -591,3 +591,48 @@
     transform: translateY(0);
   }
 }
+
+/* ---------- HEADER "DAR MATCH" BUTTON ---------- */
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.btn-match-header {
+  background-color: #2E8B57;
+  color: white;
+  font-weight: 700;
+  border: none;
+  border-radius: 24px;
+  padding: 8px 18px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.2s, transform 0.15s;
+}
+
+.btn-match-header:hover {
+  background-color: #23703F;
+  transform: translateY(-1px);
+}
+
+.btn-match-header:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 640px) {
+  .btn-match-header {
+    padding: 6px 14px;
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .nav-actions {
+    gap: 0.4rem;
+  }
+}

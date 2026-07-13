@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { CommonModule } from '@angular/common'; // Adicione esta linha
-import { ReactiveFormsModule } from '@angular/forms'; // Adicione esta linha
-import { RouterModule } from '@angular/router'; // Adicione se usar routerLink aqui também
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.html',
   styleUrls: ['./login.css'],
-  standalone: true, // Certifique-se de que está como true se for um componente Standalone
+  standalone: true,
   imports: [
-    CommonModule, 
-    ReactiveFormsModule, 
+    CommonModule,
+    ReactiveFormsModule,
     RouterModule
   ]
 })
@@ -22,20 +22,17 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   errorMsg = '';
   showPassword = false;
-  private redirect = '';
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router,
-    private route: ActivatedRoute
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.redirect = this.route.snapshot.queryParamMap.get('redirect') || '';
-
+    // Se já estiver logado, vai direto para o match (com os pets já carregados).
     if (this.authService.isLogado()) {
-      this.irParaDestino();
+      this.router.navigate(['/match']);
     }
 
     this.loginForm = this.fb.group({
@@ -59,15 +56,12 @@ export class LoginComponent implements OnInit {
     this.authService.login(dados.email, dados.senha).subscribe({
       next: (user) => {
         this.authService.salvarUsuario(user);
-        this.irParaDestino();
+        // Após o login, o usuário vai direto para o match, já com pets exibidos.
+        this.router.navigate(['/match']);
       },
       error: (err) => {
         this.errorMsg = err.error?.message || 'Erro ao realizar login.';
       }
     });
-  }
-
-  private irParaDestino(): void {
-    this.router.navigate([this.redirect === 'match' ? '/match' : '/']);
   }
 }

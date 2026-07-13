@@ -1,4 +1,5 @@
-export type Especie = 'cachorro' | 'gato';
+export type Especie = 'cachorro' | 'gato' | 'coelho' | 'porquinho-da-india' | 'hamster' | 'calopsita' | 'periquito';
+
 export type Porte = 'pequeno' | 'medio' | 'grande';
 export type FaixaEtaria = 'filhote' | 'adulto' | 'idoso';
 export type Sexo = 'macho' | 'femea';
