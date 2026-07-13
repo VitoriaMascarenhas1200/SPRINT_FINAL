@@ -85,7 +85,7 @@
 
 .user-dropdown-nome {
   font-weight: 700;
-  color: var(--text-dark);
+  color: #2B3B34;
   font-size: 0.92rem;
   padding: 4px 16px 10px;
   border-bottom: 1px solid #eee;
@@ -94,7 +94,7 @@
 
 .user-dropdown a {
   display: block;
-  color: #333;
+  color: #2B3B34;
   text-decoration: none;
   font-size: 0.9rem;
   padding: 8px 16px;
@@ -116,14 +116,14 @@
 }
 
 .match-title {
-  color: #333;
+  color: #2B3B34;
   font-weight: 800;
   margin: 0 0 0.35rem;
   font-size: 1.6rem;
 }
 
 .match-subtitle {
-  color: #6c757d;
+  color: #5C6B65;
   margin: 0 0 1.75rem;
 }
 
@@ -152,7 +152,7 @@
 .form-label {
   font-weight: 600;
   font-size: 0.82rem;
-  color: #6c757d;
+  color: #5C6B65;
   margin-bottom: 0.35rem;
 }
 
@@ -188,7 +188,7 @@
 }
 
 .btn-mp:hover {
-  background-color: #2E8B57;
+  background-color: #23703F;
 }
 
 .btn-buscar {
@@ -203,14 +203,16 @@
 }
 
 .btn-outline-mp:hover {
-  background-color: #2E8B57;
+  background-color: #E7F5EE;
+  color: #23703F;
+  border-color: #23703F;
 }
 
 /* ---------- STATUS / EMPTY STATES ---------- */
 
 .status-msg {
   text-align: center;
-  color: #6c757d;
+  color: #5C6B65;
   margin: 2rem 0;
 }
 
@@ -232,7 +234,7 @@
 }
 
 .resultados-count {
-  color: #333;
+  color: #2B3B34;
   margin-bottom: 1rem;
   font-weight: 600;
   text-align: center;
@@ -240,8 +242,20 @@
 
 .pets-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.25rem;
+}
+
+@media (max-width: 900px) {
+  .pets-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .pets-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .pet-card {
@@ -267,14 +281,14 @@
 }
 
 .pet-card-body h5 {
-  color: #333;
+  color: #2B3B34;
   font-weight: 700;
   margin: 0 0 0.15rem;
   font-size: 1.05rem;
 }
 
 .pet-card-info {
-  color: #6c757d;
+  color: #5C6B65;
   font-size: 0.85rem;
   margin: 0 0 0.15rem;
 }
@@ -353,7 +367,7 @@
 .modal-box-title {
   margin: 0;
   font-weight: 700;
-  color: #333;
+  color: #2B3B34;
   font-size: 1.1rem;
 }
 
@@ -397,7 +411,7 @@
 
 .detalhe-info p {
   margin: 0 0 0.5rem;
-  color: #333;
+  color: #2B3B34;
 }
 
 .badge-info {
@@ -412,14 +426,14 @@
 }
 
 .badge-info.badge-ok {
-  background-color: #2E8B57;
-  color: #fff;
+  background-color: #E7F5EE;
+  color: #23703F;
 }
 
 .badge-temperamento {
   display: inline-block;
-  background-color: #2E8B57;
-  color: #fff;
+  background-color: #E7F5EE;
+  color: #23703F;
   font-size: 0.78rem;
   padding: 3px 10px;
   border-radius: 12px;
@@ -429,8 +443,8 @@
 
 .match-sucesso {
   background-color: #E7F5EE;
-  border: 1px solid #2E8B57;
-  color: var(--seagreen-dark);
+  border: 1px solid #23703F;
+  color: #23703F;
   padding: 0.85rem 1rem;
   border-radius: 12px;
   font-size: 0.9rem;

@@ -13,41 +13,41 @@ export class PetService {
   // Em uma versão futura, isso viria de uma API real.
   private pets: Pet[] = [
     {
-      id: 1, nome: 'Caramelo', especie: 'cachorro', raca: 'SRD', porte: 'medio',
+      id: 1, nome: 'Caramelo', especie: 'cachorro', raca: 'Golden Retriever', porte: 'grande',
       faixaEtaria: 'adulto', idadeAnos: 3, sexo: 'macho', cidade: 'Salvador', estado: 'BA',
-      ong: 'ONG Patinhas do Bem', foto: 'https://placedog.net/600/450?id=1',
+      ong: 'ONG Patinhas do Bem', foto: '/img/Caramelo.jpg',
       descricao: 'Caramelo é um cão dócil e brincalhão, resgatado das ruas após um acidente. Já está recuperado, castrado e pronto para uma família amorosa.',
       temperamento: ['Dócil', 'Brincalhão', 'Sociável'], vacinado: true, castrado: true,
-      dataResgate: '2026-06-20', recemResgatado: false
+      dataResgate: '2026-06-20', recemResgatado: true
     },
     {
       id: 2, nome: 'Mel', especie: 'gato', raca: 'SRD', porte: 'pequeno',
       faixaEtaria: 'filhote', idadeAnos: 0, sexo: 'femea', cidade: 'Salvador', estado: 'BA',
-      ong: 'Instituto Focinhos Felizes', foto: 'https://placecats.com/bella/300/200',
+      ong: 'Instituto Focinhos Felizes', foto: '/img/Mel.jpeg',
       descricao: 'Mel foi encontrada em uma caixa abandonada com seus irmãos. É curiosa, cheia de energia e adora colo.',
       temperamento: ['Curiosa', 'Carinhosa'], vacinado: true, castrado: false,
       dataResgate: '2026-06-28', recemResgatado: true
     },
     {
-      id: 3, nome: 'Thor', especie: 'cachorro', raca: 'Vira-lata Grande', porte: 'grande',
+      id: 3, nome: 'Thor', especie: 'cachorro', raca: 'Golden Retriever', porte: 'pequeno',
       faixaEtaria: 'adulto', idadeAnos: 4, sexo: 'macho', cidade: 'Lauro de Freitas', estado: 'BA',
-      ong: 'ONG Patinhas do Bem', foto: 'https://placedog.net/600/450?id=2',
+      ong: 'ONG Patinhas do Bem', foto: '/img/Thor.jpg',
       descricao: 'Thor é forte e protetor, mas extremamente carinhoso com quem confia. Ideal para casas com quintal.',
       temperamento: ['Protetor', 'Leal', 'Calmo'], vacinado: true, castrado: true,
       dataResgate: '2026-05-15', recemResgatado: false
     },
     {
-      id: 4, nome: 'Luna', especie: 'gato', raca: 'Siamês', porte: 'pequeno',
+      id: 4, nome: 'Luna', especie: 'gato', raca: 'SRD', porte: 'pequeno',
       faixaEtaria: 'adulto', idadeAnos: 2, sexo: 'femea', cidade: 'Salvador', estado: 'BA',
-      ong: 'Instituto Focinhos Felizes', foto: 'https://plus.unsplash.com/premium_photo-1673967831980-1d377baaded2?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/600/450?image=2',
+      ong: 'Instituto Focinhos Felizes', foto: '/img/Luna.avif',
       descricao: 'Luna é independente, elegante e adora observar tudo de um cantinho alto. Já está vacinada e castrada.',
       temperamento: ['Independente', 'Observadora'], vacinado: true, castrado: true,
       dataResgate: '2026-04-02', recemResgatado: false
     },
     {
-      id: 5, nome: 'Bidu', especie: 'cachorro', raca: 'Poodle', porte: 'pequeno',
+      id: 5, nome: 'Bidu', especie: 'cachorro', raca: 'Schnauzer', porte: 'pequeno',
       faixaEtaria: 'idoso', idadeAnos: 9, sexo: 'macho', cidade: 'Camaçari', estado: 'BA',
-      ong: 'Abrigo Amigo Fiel', foto: 'https://placedog.net/600/450?id=3',
+      ong: 'Abrigo Amigo Fiel', foto: '/img/Bidu.jpg',
       descricao: 'Bidu é um companheiro tranquilo, perfeito para quem busca um pet mais calmo. Precisa de cuidados veterinários de rotina.',
       temperamento: ['Calmo', 'Companheiro'], vacinado: true, castrado: true,
       dataResgate: '2026-06-25', recemResgatado: true
@@ -55,44 +55,44 @@ export class PetService {
     {
       id: 6, nome: 'Nina', especie: 'cachorro', raca: 'SRD', porte: 'medio',
       faixaEtaria: 'filhote', idadeAnos: 0, sexo: 'femea', cidade: 'Salvador', estado: 'BA',
-      ong: 'ONG Patinhas do Bem', foto: 'https://placedog.net/600/450?id=4',
+      ong: 'ONG Patinhas do Bem', foto: '/img/Nina.jpg',
       descricao: 'Nina foi resgatada junto com a mãe e os irmãos. É elétrica, adora brincar e está aprendendo a confiar em humanos.',
       temperamento: ['Elétrica', 'Brincalhona'], vacinado: true, castrado: false,
       dataResgate: '2026-07-01', recemResgatado: true
     },
     {
-      id: 7, nome: 'Simba', especie: 'gato', raca: 'SRD', porte: 'medio',
+      id: 7, nome: 'Simba', especie: 'gato', raca: 'SRD', porte: 'pequeno',
       faixaEtaria: 'adulto', idadeAnos: 3, sexo: 'macho', cidade: 'Lauro de Freitas', estado: 'BA',
-      ong: 'Instituto Focinhos Felizes', foto: 'https://images.unsplash.com/photo-1596854407944-bf87f6fdd49e?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/600/450?image=3',
+      ong: 'Instituto Focinhos Felizes', foto: '/img/Simba.avif',
       descricao: 'Simba é brincalhão e adora perseguir bolinhas. Convive bem com outros gatos.',
       temperamento: ['Brincalhão', 'Sociável'], vacinado: true, castrado: true,
       dataResgate: '2026-03-18', recemResgatado: false
     },
-    {
+    {//AQUI VERIFICAR INFORMAÇÕES DO PET, SE ESTÃO CORRETAS
       id: 8, nome: 'Amora', especie: 'gato', raca: 'SRD', porte: 'pequeno',
       faixaEtaria: 'idoso', idadeAnos: 8, sexo: 'femea', cidade: 'Salvador', estado: 'BA',
-      ong: 'Abrigo Amigo Fiel', foto: 'https://images.unsplash.com/photo-1706791213109-04799c15a5be?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/600/450?image=4',
+      ong: 'Abrigo Amigo Fiel', foto: '/img/Amora.avif',
       descricao: 'Amora é tranquila e carinhosa, ideal para uma casa mais quieta. Já perdeu a família por mudança e busca um novo lar definitivo.',
       temperamento: ['Tranquila', 'Carinhosa'], vacinado: true, castrado: true,
       dataResgate: '2026-02-10', recemResgatado: false
     },
     {
-      id: 9, nome: 'Rex', especie: 'cachorro', raca: 'Pastor Misto', porte: 'grande',
+      id: 9, nome: 'Robson', especie: 'cachorro', raca: 'Pastor Misto', porte: 'grande',
       faixaEtaria: 'adulto', idadeAnos: 5, sexo: 'macho', cidade: 'Camaçari', estado: 'BA',
-      ong: 'Abrigo Amigo Fiel', foto: 'https://placedog.net/600/450?id=5',
-      descricao: 'Rex é inteligente e obediente, já responde a comandos básicos. Foi resgatado de maus-tratos e hoje confia em pessoas gentis.',
+      ong: 'Abrigo Amigo Fiel', foto: '/img/Robson.jpg',
+      descricao: 'Robson é inteligente e obediente, já responde a comandos básicos. Foi resgatado de maus-tratos e hoje confia em pessoas gentis.',
       temperamento: ['Inteligente', 'Obediente'], vacinado: true, castrado: true,
       dataResgate: '2026-06-30', recemResgatado: true
     },
     {
       id: 10, nome: 'Bela', especie: 'cachorro', raca: 'SRD', porte: 'pequeno',
       faixaEtaria: 'adulto', idadeAnos: 2, sexo: 'femea', cidade: 'Salvador', estado: 'BA',
-      ong: 'ONG Patinhas do Bem', foto: 'https://placedog.net/600/450?id=6',
+      ong: 'ONG Patinhas do Bem', foto: '/img/Bela.jpg',
       descricao: 'Bela é pequena, esperta e adora colo. Se dá muito bem com crianças e outros pets.',
       temperamento: ['Esperta', 'Afetuosa'], vacinado: true, castrado: true,
       dataResgate: '2026-05-22', recemResgatado: false
     },
-    {
+    {//AQUI AS IMAGENS
       id: 11, nome: 'Salém', especie: 'gato', raca: 'Preto SRD', porte: 'medio',
       faixaEtaria: 'filhote', idadeAnos: 0, sexo: 'macho', cidade: 'Lauro de Freitas', estado: 'BA',
       ong: 'Instituto Focinhos Felizes', foto: 'https://placecats.com/neo/300/200',
@@ -180,7 +180,7 @@ export class PetService {
       temperamento: ['Ativo', 'Brincalhão'], vacinado: true, castrado: false,
       dataResgate: '2026-07-04', recemResgatado: true
     },
-    {//aqui
+    {//FALTA BUSCAR IMAGENS
       id: 22, nome: 'Flor', especie: 'periquito', raca: 'Periquito Inglês', porte: 'pequeno',
       faixaEtaria: 'idoso', idadeAnos: 4, sexo: 'femea', cidade: 'Lauro de Freitas', estado: 'BA',
       ong: 'Refúgio Patas Miúdas', foto: 'https://placehold.co/600x450/2E8B57/FFFFFF?text=Flor+%F0%9F%A6%9C',
