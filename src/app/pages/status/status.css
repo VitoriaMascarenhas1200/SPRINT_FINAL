@@ -1,0 +1,289 @@
+:root {
+  --seagreen: #2E8B57;
+  --seagreen-dark: #23703F;
+  --seagreen-light: #E7F5EE;
+  --text-dark: #2B3B34;
+  --text-muted: #5C6B65;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.status-wrapper {
+  min-height: 100vh;
+  background-color: #FBFDFC;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ---------- HEADER (same pattern as home/match) ---------- */
+
+.navbar-mp {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e3ede8;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  padding: 0.75rem 1.5rem;
+}
+
+.brand {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #2E8B57;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.brand-icon {
+  margin-right: 6px;
+}
+
+.user-menu {
+  position: relative;
+}
+
+.user-btn {
+  background: white;
+  border: 1px solid #d7e3dd;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: border-color 0.2s;
+}
+
+.user-btn:hover {
+  border-color: #2E8B57;
+}
+
+.user-dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 50px;
+  background: white;
+  border: 1px solid #e3ede8;
+  border-radius: 10px;
+  padding: 10px 0;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  min-width: 190px;
+}
+
+.user-dropdown.open {
+  display: block;
+}
+
+.user-dropdown-nome {
+  font-weight: 700;
+  color: #2B3B34;
+  font-size: 0.92rem;
+  padding: 4px 16px 10px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 4px;
+}
+
+.user-dropdown a {
+  display: block;
+  color: #2B3B34;
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.user-dropdown a:hover {
+  background-color: #E7F5EE;
+  color: #2E8B57;
+}
+
+/* ---------- MAIN CONTENT ---------- */
+
+.status-content {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 3.5rem;
+}
+
+.status-title {
+  color: #2B3B34;
+  font-weight: 800;
+  margin: 0 0 0.35rem;
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+.status-subtitle {
+  color: #5C6B65;
+  margin: 0 0 2rem;
+  text-align: center;
+}
+
+.status-msg {
+  text-align: center;
+  color: #5C6B65;
+  margin: 2rem 0;
+}
+
+.alerta-vazio {
+  background-color: #fff8ea;
+  border: 1px solid #f2dfa8;
+  color: #8a6d1f;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.alerta-vazio a {
+  color: #2E8B57;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.alerta-vazio a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- MATCH LIST ---------- */
+
+.match-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.match-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+}
+
+.match-card-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.match-card-body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.match-card-body h3 {
+  color: #2B3B34;
+  font-weight: 700;
+  margin: 0 0 0.15rem;
+  font-size: 1.15rem;
+}
+
+.match-card-info {
+  color: #5C6B65;
+  font-size: 0.88rem;
+  margin: 0 0 0.75rem;
+}
+
+.status-badge {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 14px;
+  margin-bottom: 0.6rem;
+}
+
+.status-aguardando_contato {
+  background-color: #fff3d6;
+  color: #8a6d1f;
+}
+
+.status-visita_agendada {
+  background-color: #E7F5EE;
+  color: #23703F;
+}
+
+.status-adocao_concluida {
+  background-color: #2E8B57;
+  color: white;
+}
+
+.match-card-data {
+  color: #5C6B65;
+  font-size: 0.8rem;
+  margin: 0 0 1rem;
+}
+
+.btn {
+  border: none;
+  border-radius: 24px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  transition: background-color 0.2s;
+}
+
+.btn-mp {
+  background-color: #2E8B57;
+  color: white;
+  padding: 0.65rem 1.4rem;
+}
+
+.btn-mp:hover {
+  background-color: #23703F;
+  color: white;
+}
+
+.btn-whatsapp {
+  width: 100%;
+}
+
+/* ---------- RESPONSIVE: side-by-side on larger screens ---------- */
+
+@media (min-width: 640px) {
+  .match-card {
+    flex-direction: row;
+  }
+
+  .match-card-img {
+    width: 260px;
+    height: auto;
+    flex-shrink: 0;
+  }
+
+  .match-card-body {
+    justify-content: center;
+  }
+
+  .btn-whatsapp {
+    width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-mp {
+    padding: 0.65rem 1rem;
+  }
+
+  .status-content {
+    padding: 2rem 1rem 3rem;
+  }
+
+  .match-card-body {
+    padding: 1rem;
+  }
+}

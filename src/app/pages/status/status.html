@@ -1,0 +1,54 @@
+<div class="status-wrapper">
+
+  <header class="navbar-mp">
+    <a routerLink="/" class="brand">
+      <span class="brand-icon">🐾</span> MatchPet
+    </a>
+
+    <div class="user-menu">
+      <button class="user-btn" (click)="userMenuAberto = !userMenuAberto" aria-label="Menu do usuário">
+        👤
+      </button>
+      <div class="user-dropdown" [class.open]="userMenuAberto">
+        <div class="user-dropdown-nome">Olá, {{ usuario?.nome }}</div>
+        <a routerLink="/" (click)="userMenuAberto=false">Home</a>
+        <a routerLink="/status" (click)="userMenuAberto=false">Status</a>
+        <a (click)="logout()">Sair</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="status-content">
+
+    <h2 class="status-title">Meus matches</h2>
+    <p class="status-subtitle">Acompanhe o andamento de cada match e fale diretamente com a ONG.</p>
+
+    <div *ngIf="carregando" class="status-msg">Carregando seu histórico...</div>
+
+    <div *ngIf="!carregando && !matches.length" class="alerta-vazio">
+      Você ainda não deu nenhum match. <a routerLink="/match">Ir para o Match</a>
+    </div>
+
+    <div class="match-list" *ngIf="!carregando && matches.length">
+      <article class="match-card" *ngFor="let item of matches">
+        <img [src]="item.pet.foto" [alt]="item.pet.nome" class="match-card-img" />
+
+        <div class="match-card-body">
+          <h3>{{ item.pet.nome }}</h3>
+          <p class="match-card-info">{{ item.pet.raca }} · {{ item.pet.ong }}</p>
+
+          <span class="status-badge" [ngClass]="'status-' + item.status">
+            {{ statusLabel(item.status) }}
+          </span>
+
+          <p class="match-card-data">Match em {{ item.dataMatch | date:'dd/MM/yyyy' }}</p>
+
+          <a [href]="linkWhatsapp(item)" target="_blank" rel="noopener" class="btn btn-mp btn-whatsapp">
+            Falar com a ONG no WhatsApp
+          </a>
+        </div>
+      </article>
+    </div>
+
+  </div>
+</div>

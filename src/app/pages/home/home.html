@@ -20,8 +20,10 @@
           👤 <span class="user-name">{{ usuario.nome }}</span>
         </button>
         <div class="user-dropdown" [class.open]="userMenuAberto">
-          <a routerLink="/match" (click)="userMenuAberto=false">Buscar Match</a>
-          <a (click)="logout()" class="dropdown-link">Sair</a>
+          <div class="user-dropdown-nome">Olá, {{ usuario.nome }}</div>
+          <a routerLink="/" (click)="userMenuAberto=false">Home</a>
+          <a routerLink="/status" (click)="userMenuAberto=false">Status</a>
+          <a (click)="logout()">Sair</a>
         </div>
       </div>
     </div>

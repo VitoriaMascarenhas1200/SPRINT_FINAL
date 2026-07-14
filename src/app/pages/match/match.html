@@ -12,6 +12,7 @@
       <div class="user-dropdown" [class.open]="userMenuAberto">
         <div class="user-dropdown-nome">Olá, {{ usuario?.nome }}</div>
         <a routerLink="/" (click)="userMenuAberto=false">Home</a>
+        <a routerLink="/status" (click)="userMenuAberto=false">Status</a>
         <a (click)="logout()">Sair</a>
       </div>
     </div>

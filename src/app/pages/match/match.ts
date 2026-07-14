@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth';
 import { PetService } from '../../services/pets';
+import { MatchService } from '../../services/match';
 import { Pet, PetFiltro } from '../../../../models/pet.model';
 import { User } from '../../../../models/user.model';
 
@@ -39,6 +40,7 @@ export class MatchComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private petService: PetService,
+    private matchService: MatchService,
     private router: Router
   ) {}
 
@@ -79,11 +81,13 @@ export class MatchComponent implements OnInit {
   }
 
   confirmarMatch(pet: Pet): void {
-    this.matchesConfirmados.add(pet.id);
+    if (this.usuario) {
+    this.matchService.registrarMatch(this.usuario.email, pet.id);
+  }
   }
 
   jaTemMatch(pet: Pet): boolean {
-    return this.matchesConfirmados.has(pet.id);
+    return this.usuario ? this.matchService.jaTemMatch(this.usuario.email, pet.id) : false;
   }
 
   logout(): void {
