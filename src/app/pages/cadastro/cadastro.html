@@ -2,7 +2,9 @@
   <div class="cadastro-card">
 
     <div class="cadastro-header">
-      <a routerLink="/" class="brand-link"><span class="brand-icon">🐾</span> MatchPet</a>
+      <a routerLink="/" class="brand-link">
+        <span class="brand-icon">🐾</span> MatchPet
+      </a>
     </div>
 
     <h4 class="titulo">Criar minha conta</h4>
@@ -78,7 +80,6 @@
   </div>
 </div>
 
-<!-- Pop-up: Termos de Uso -->
 <div class="modal-overlay" *ngIf="mostrarTermos" (click)="fecharTermos()">
   <div class="modal-box" (click)="$event.stopPropagation()">
     <div class="modal-box-header">
@@ -97,7 +98,6 @@
   </div>
 </div>
 
-<!-- Pop-up: Política de Privacidade (LGPD) -->
 <div class="modal-overlay" *ngIf="mostrarLGPD" (click)="fecharLGPD()">
   <div class="modal-box" (click)="$event.stopPropagation()">
     <div class="modal-box-header">

@@ -1,6 +1,6 @@
 <div class="home-wrapper">
 
-<header class="navbar-mp">
+  <header class="navbar-mp">
     <a routerLink="/" class="brand">
       <span class="brand-icon">🐾</span> MatchPet
     </a>
@@ -29,47 +29,46 @@
     </div>
   </header>
 
-<section class="hero-carousel">
+  <section class="hero-carousel">
 
-  <input type="radio" name="hero-slide" id="hero-slide-1" class="carousel-radio" [checked]="slideAtivo === 1">
-  <input type="radio" name="hero-slide" id="hero-slide-2" class="carousel-radio" [checked]="slideAtivo === 2">
-  <input type="radio" name="hero-slide" id="hero-slide-3" class="carousel-radio" [checked]="slideAtivo === 3">
+    <input type="radio" name="hero-slide" id="hero-slide-1" class="carousel-radio" [checked]="slideAtivo === 1">
+    <input type="radio" name="hero-slide" id="hero-slide-2" class="carousel-radio" [checked]="slideAtivo === 2">
+    <input type="radio" name="hero-slide" id="hero-slide-3" class="carousel-radio" [checked]="slideAtivo === 3">
 
-  <div class="carousel-track">
-    <div class="carousel-slide slide-1" style="background-image:url('https://placedog.net/1200/700?id=8')"></div>
-    <div class="carousel-slide slide-2" style="background-image:url('https://placedog.net/1200/700?id=2')"></div>
-    <div class="carousel-slide slide-3" style="background-image:url('https://placekitten.com/1200/700?image=3')"></div>
-  </div>
+    <div class="carousel-track">
+      <div class="carousel-slide slide-1" style="background-image:url('https://placedog.net/1200/700?id=8')"></div>
+      <div class="carousel-slide slide-2" style="background-image:url('https://placedog.net/1200/700?id=2')"></div>
+      <div class="carousel-slide slide-3" style="background-image:url('https://placekitten.com/1200/700?image=3')"></div>
+    </div>
 
-  <div class="hero-overlay"></div>
+    <div class="hero-overlay"></div>
 
-  <div class="hero-content">
-    <h1>Encontre seu novo melhor amigo!</h1>
-    <p>Conectamos ONGs de proteção animal a pessoas prontas para dar um novo lar a pets resgatados.</p>
-    <button class="btn btn-mp btn-lg" (click)="darMatch()">Dar Match 🐾</button>
-    <!--<p *ngIf="!usuario" class="hero-hint">É necessário ter uma conta para dar match.</p>-->
-  </div>
+    <div class="hero-content">
+      <h1>Encontre seu novo melhor amigo!</h1>
+      <p>Conectamos ONGs de proteção animal a pessoas prontas para dar um novo lar a pets resgatados.</p>
+      <button class="btn btn-mp btn-lg" (click)="darMatch()">Dar Match 🐾</button>
+      </div>
 
-  <div class="carousel-arrows arrows-for-1">
-    <label (click)="mudarSlideManualmente(3)" class="arrow arrow-left" aria-label="Slide anterior">&#10094;</label>
-    <label (click)="mudarSlideManualmente(2)" class="arrow arrow-right" aria-label="Próximo slide">&#10095;</label>
-  </div>
-  <div class="carousel-arrows arrows-for-2">
-    <label (click)="mudarSlideManualmente(1)" class="arrow arrow-left" aria-label="Slide anterior">&#10094;</label>
-    <label (click)="mudarSlideManualmente(3)" class="arrow arrow-right" aria-label="Próximo slide">&#10095;</label>
-  </div>
-  <div class="carousel-arrows arrows-for-3">
-    <label (click)="mudarSlideManualmente(2)" class="arrow arrow-left" aria-label="Slide anterior">&#10094;</label>
-    <label (click)="mudarSlideManualmente(1)" class="arrow arrow-right" aria-label="Próximo slide">&#10095;</label>
-  </div>
+    <div class="carousel-arrows arrows-for-1">
+      <label (click)="mudarSlideManualmente(3)" class="arrow arrow-left" aria-label="Slide anterior">&#10094;</label>
+      <label (click)="mudarSlideManualmente(2)" class="arrow arrow-right" aria-label="Próximo slide">&#10095;</label>
+    </div>
+    <div class="carousel-arrows arrows-for-2">
+      <label (click)="mudarSlideManualmente(1)" class="arrow arrow-left" aria-label="Slide anterior">&#10094;</label>
+      <label (click)="mudarSlideManualmente(3)" class="arrow arrow-right" aria-label="Próximo slide">&#10095;</label>
+    </div>
+    <div class="carousel-arrows arrows-for-3">
+      <label (click)="mudarSlideManualmente(2)" class="arrow arrow-left" aria-label="Slide anterior">&#10094;</label>
+      <label (click)="mudarSlideManualmente(1)" class="arrow arrow-right" aria-label="Próximo slide">&#10095;</label>
+    </div>
 
-  <div class="carousel-dots">
-    <label (click)="mudarSlideManualmente(1)" class="dot" aria-label="Slide 1"></label>
-    <label (click)="mudarSlideManualmente(2)" class="dot" aria-label="Slide 2"></label>
-    <label (click)="mudarSlideManualmente(3)" class="dot" aria-label="Slide 3"></label>
-  </div>
+    <div class="carousel-dots">
+      <label (click)="mudarSlideManualmente(1)" class="dot" aria-label="Slide 1"></label>
+      <label (click)="mudarSlideManualmente(2)" class="dot" aria-label="Slide 2"></label>
+      <label (click)="mudarSlideManualmente(3)" class="dot" aria-label="Slide 3"></label>
+    </div>
 
-</section>
+  </section>
 
   <section class="pets-section" *ngIf="petsRecentes.length">
     <h2 class="section-title">Resgatados recentemente</h2>
@@ -94,7 +93,6 @@
 
 </div>
 
-<!-- Overlay: detalhes do pet (só é aberto se o usuário estiver logado) -->
 <div class="modal-overlay" *ngIf="mostrarModalDetalhe" (click)="fecharModalDetalhe()">
   <div class="modal-box modal-box-lg" *ngIf="petSelecionado as pet" (click)="$event.stopPropagation()">
     <div class="modal-box-header">
@@ -130,7 +128,6 @@
   </div>
 </div>
 
-<!-- Overlay: aviso de login necessário -->
 <div class="modal-overlay" *ngIf="mostrarModalLoginNecessario" (click)="fecharModalLoginNecessario()">
   <div class="modal-box modal-box-sm login-necessario-content" (click)="$event.stopPropagation()">
     <div class="modal-box-header">

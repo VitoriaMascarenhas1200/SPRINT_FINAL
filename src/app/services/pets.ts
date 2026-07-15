@@ -57,7 +57,7 @@ export class PetService {
       ong: 'ONG Patinhas do Bem', foto: '/img/Nina.jpg',
       descricao: 'Nina foi resgatada junto com a mãe e os irmãos. É elétrica, adora brincar e está aprendendo a confiar em humanos.',
       temperamento: ['Elétrica', 'Brincalhona'], vacinado: true, castrado: false,
-      dataResgate: '2026-07-01', recemResgatado: true
+      dataResgate: '2026-07-01', recemResgatado: false
     },
     {
       id: 7, nome: 'Simba', especie: 'gato', raca: 'SRD', porte: 'pequeno',

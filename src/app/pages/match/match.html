@@ -98,7 +98,6 @@
   </div>
 </div>
 
-<!-- Pop-up: detalhes do pet -->
 <div class="modal-overlay" *ngIf="mostrarModalDetalhe" (click)="fecharModalDetalhe()">
   <div class="modal-box" *ngIf="petSelecionado as pet" (click)="$event.stopPropagation()">
     <div class="modal-box-header">
